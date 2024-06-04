@@ -31,7 +31,7 @@ class Container:
         verbose (bool, optional): Flag for verbose output. Defaults to False.
     """
 
-    def __init__(self, solute=None, org=False, volume=0, temp=25, verbose=False):
+    def __init__(self, solute=None, org=False, volume=0, temp=25, verbose=False):\
         if solute is None:
             solute = {}
         self.solute = solute

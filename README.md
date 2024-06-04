@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Chemistry3D 🧪
 ## 1 Getting Start
 
@@ -40,3 +41,6 @@
     - `rxn4chemistry package`
   - `get_info()`: Get detailed information about the products
     - `get_info_organic()`: Web scraping
+=======
+# Chemistry3D
+>>>>>>> 620cea4ffa2e14fc531029a7ff960bcce45f8f58
