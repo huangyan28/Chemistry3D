@@ -1,96 +1,171 @@
-#launch Isaac Sim before any other imports
-#default first two lines in any standalone application
-from omni.isaac.kit import SimulationApp
-simulation_app = SimulationApp({"headless": False})
 
-import numpy as np
-from omni.isaac.core import World
-from omni.isaac.core.utils.stage import add_reference_to_stage
-from organic_example_task import Chem_Lab_Task_SL
-from omni.isaac.franka import Franka
-from omni.isaac.core.utils.types import ArticulationAction
-from pxr import Sdf, Gf, UsdPhysics
-from omni.isaac.sensor import Camera
-from omni.isaac.franka.controllers.rmpflow_controller import RMPFlowController
-from omni.isaac.core.utils.rotations import euler_angles_to_quat
-from omni.physx.scripts import physicsUtils, particleUtils
-from Controllers.Controller_Manager import ControllerManager
-from Controllers.pick_move_controller import PickMoveController
-from Controllers.pour_controller import PourController
-from Controllers.return_controller import ReturnController
-from Sim_Container import Sim_Container
-from utils import Utils
-from utils import *
-import logging
-import os
-import matplotlib.pyplot as plt
-from PIL import Image
-from moviepy.editor import ImageSequenceClip
-from tqdm import tqdm
+class Sim_Container(Container):
+    def __init__(self, world,sim_container, object=None, solute=None, org=False, volume=0, temp=25, verbose=False):
+        # 初始化 Container 基类
+        super().__init__(solute, org, volume, temp, verbose)
+        if org is False and solute is not None:
+            self.update(self)
 
-my_world = World(physics_dt = 1.0/ 120.0,stage_units_in_meters=1.0, set_defaults=False)
-my_world._physics_context.enable_gpu_dynamics(flag=True)
-stage = my_world.scene.stage
-scenePath = Sdf.Path("/physicsScene")
-utils = Utils()
-utils._set_particle_parameter(my_world,particleContactOffset =  0.003)
+        self.world = world
+        self.sim_container = sim_container
+        # 确保 object 是一个包含两个列表（液体和固体）的字典
+        rbApi = UsdPhysics.RigidBodyAPI.Apply(self.sim_container.prim.GetPrim() )
+        rbApi.CreateRigidBodyEnabledAttr(True)
+        current_observations = self.world.get_observations()
+        if solute is not None and volume != 's':
+            utils._set_particle_parameter(self.world,particleContactOffset =  0.003)
+            particle_system_set_material_dict= utils.create_particle_system_and_set(
+            self.world,
+            particle_system_path_str = f"/World/particleSystem{self.sim_container.name}",
+            particle_set_path_str = f"/World/particles{self.sim_container.name}",
+            scenePath = scenePath,
+            center = Gf.Vec3f(current_observations[self.sim_container.name]["Default_Position"][0], current_observations[self.sim_container.name]["Default_Position"][1],  current_observations[self.sim_container.name]["Default_Position"][2]+0.01),
+            dim_x = 10,
+            dim_y = 10,
+            dim_z = 6,
+            material_color =  self.get_color()
+            )
+            self.object = {'liquid': [particle_system_set_material_dict], 'solid': []}
 
-my_world.add_task(Chem_Lab_Task_SL(name ='Chem_Lab_Task_SL'))
-my_world.reset()
+        if solute is not None and volume == 's':
 
-Franka0 = my_world.scene.get_object("Franka0")
-mycamera = my_world.scene.get_object("camera")
-current_observations = my_world.get_observations()
-controller_manager = ControllerManager(my_world, Franka0, Franka0.gripper)
-# particle params#4*5 is 1ml
+            solid = world.scene.add( 
+                DynamicCuboid(
+                prim_path=f"/World/Solid_{self.sim_container.name}", # The prim path of the cube in the USD stage
+                name=f"Solid_{self.sim_container.name}", # The unique name used to retrieve the object from the scene later on
+                position=np.array([current_observations[self.sim_container.name]["Default_Position"][0], current_observations[self.sim_container.name]["Default_Position"][1],  current_observations[self.sim_container.name]["Default_Position"][2]+0.01]), # Using the current stage units which is in meters by default.
+                scale = np.array([0.01, 0.01, 0.01]), # most arguments accept mainly numpy arrays.
+                color = np.array(self.get_color())
+                ))
+            self.object = {'liquid': [], 'solid': [solid]}
 
-Sim_Bottle_Kmno4 = Sim_Container(
-                                world = my_world,     
-                                sim_container = my_world.scene.get_object("Bottle_Kmno4"),
-                                solute={'c1ccc2cc3ccccc3cc2c1': 10}, 
-                                org=True,  
-                                volume=10
-                                )
-Sim_Bottle_Hcl = Sim_Container(
-                                world = my_world, 
-                                sim_container = my_world.scene.get_object("Bottle_Hcl"),
-                                solute={'BrBr': 20}, 
-                                org=True,  
-                                volume=10
-                                )
-Sim_Beaker_Kmno4 = Sim_Container(my_world,sim_container = my_world.scene.get_object("beaker_Kmno4"),org=True)
-Sim_Beaker_Hcl = Sim_Container(my_world,sim_container = my_world.scene.get_object("beaker_Hcl"),org=True)
+        if solute is None:
+            self.object = {'liquid': [], 'solid': []}
+        # else:
+        #     self.object = object
 
-Sim_Beaker_Kmno4.sim_update(Sim_Bottle_Kmno4,Franka0,controller_manager)
-Sim_Beaker_Hcl.sim_update(Sim_Bottle_Hcl,Franka0,controller_manager,5)
-Sim_Beaker_Hcl.sim_update(Sim_Beaker_Kmno4,Franka0,controller_manager)
+    def get_color(self):
+        if self.org:
+            return Gf.Vec3f(255,255,255)
+        else:
+            if self.get_info()[1]['color'][:3] == [0,0,0]:
+                return [255,255,255]
+            return self.get_info()[1]['color'][:3]
+        
+    def sim_update(self,Sim_Container1,robot,controller_manager,pour_volumn = None):
 
-count = 1
-root_path = '/home/huangyan/.local/share/ov/pkg/isaac_sim-2022.2.1/standalone_examples/Chem_lab/Organic_demo'
+        pickmove_controller = PickMoveController(
+            name="pickmove_controller",
+            cspace_controller=RMPFlowController(name="pickmove_cspace_controller", robot_articulation=robot),
+            gripper=robot.gripper,
+            speed = 1.5
+        )
 
-while simulation_app.is_running():
-    my_world.step(render=True)
-    if my_world.is_playing():
-        if my_world.current_time_step_index == 0:
-            my_world.reset()
-            controller_manager.reset()
-        current_observations = my_world.get_observations()
-        controller_manager.execute(current_observations = my_world.get_observations())
-        controller_manager.process_concentration_iters()
-        if controller_manager.need_new_liquid():
-            controller_manager.get_current_controller()._get_sim_container2().create_liquid(controller_manager,current_observations)
-        if (count%10 == 0):
-            img = mycamera.get_rgba()
-            file_name = os.path.join(root_path, f"{count}")
-            save_rgb(img, file_name)
-        count += 1 
-        if controller_manager.is_done():
-            image_files = [os.path.join(root_path, f) for f in os.listdir(root_path) if f.endswith(('.png', '.jpg', '.jpeg'))]
-            image_files.sort(key=natural_sort_key)  # 使用自然排序
-            clip = ImageSequenceClip(image_files, fps=60)
-            clip.write_videofile(os.path.join(root_path, "output_video.mp4"), codec="libx264")
-            for image_file in tqdm(image_files):
-                os.remove(image_file)
-            my_world.pause()
-            break
-simulation_app.close()
+        from Controllers.pour_controller import PourController
+        pour_controller = PourController(
+            name="pour_controller",
+            cspace_controller=RMPFlowController(name="pour_cspace_controller", robot_articulation=robot),
+            gripper=robot.gripper,
+            Sim_Container1 = Sim_Container1,
+            Sim_Container2 = self,
+            pour_volume = pour_volumn
+        )
+
+        return_controller = PlaceController(
+            name="return_controller",
+            cspace_controller=RMPFlowController(name="return_cspace_controller", robot_articulation=robot),
+            gripper=robot.gripper,
+            speed = 1.5
+        )
+
+        controller_manager.add_controller('pickmove_controller', pickmove_controller)
+        controller_manager.add_controller('pour_controller', pour_controller)
+        controller_manager.add_controller('return_controller', return_controller)
+
+        controller_manager.add_task("pick", {
+            "picking_position": lambda obs: obs[Sim_Container1.get_sim_container().name]["position"],
+            "target_position": lambda obs: obs[Sim_Container1.get_sim_container().name]["Pour_Position"],
+            "current_joint_positions": lambda obs: robot.get_joint_positions(),
+            "end_effector_offset": np.array([0.0, 0.0, 0.06]),
+            "end_effector_orientation": euler_angles_to_quat(np.array([np.pi/2, np.pi/2, 0]))
+        })
+        controller_manager.add_task("pour", {
+            'franka_art_controller':  robot.get_articulation_controller(), 
+            "current_joint_positions": robot.get_joint_positions(),
+            'current_joint_velocities': robot.get_joint_velocities(),
+            'pour_speed': lambda obs: obs[Sim_Container1.get_sim_container().name]["Pour_Derecition"] * 55 / 180.0 * np.pi
+        })
+        controller_manager.add_task("return", {
+            "pour_position": lambda obs: obs[Sim_Container1.get_sim_container().name]["Pour_Position"],
+            "return_position": lambda obs: obs[Sim_Container1.get_sim_container().name]["Return_Position"],
+            "current_joint_positions": lambda obs: robot.get_joint_positions(),
+            "end_effector_offset": np.array([0.0, 0.00, 0.055]),
+            "end_effector_orientation": euler_angles_to_quat(np.array([np.pi/2, np.pi/2, 0]))
+        })
+
+    def set_sim_container(self, new_sim_container):
+        """Set the simulation container."""
+        self.sim_container = new_sim_container
+
+    def get_sim_container(self):
+        """Get the current simulation container."""
+        return self.sim_container
+    
+    def set_object(self, new_object):
+        """Update the object dictionary."""
+        self.object = new_object
+
+    def get_object(self):
+        """Get the current object dictionary."""
+        return self.object
+
+    def add_liquid(self, liquid):
+        """Add a liquid to the liquid list."""
+        self.object['liquid'].append(liquid)
+        return
+    
+    def remove_solid(self, solid):
+        """Add a liquid to the liquid list."""
+        self.object['solid'].clear()
+        return
+    
+    def melt_solid(self,controller_manager):
+        for solid in self.object['solid']:
+            prim_path = solid.prim.GetPath().pathString
+            prims_utils.delete_prim(prim_path)
+            self.remove_solid(solid)
+        controller_manager.set_need_solid_melt(False)
+
+    def create_liquid(self, controller_manager,current_observations):
+        particle_system_set_material_dict= utils.create_particle_system_and_set(
+            self.world,
+            particle_system_path_str = f"/World/particelsystem_{controller_manager.get_current_controller_name()}",
+            particle_set_path_str = f"/World/particles_{controller_manager.get_current_controller_name()}",
+            scenePath = scenePath,
+            center = Gf.Vec3f(
+                    float(current_observations[self.get_sim_container().name]["position"][0]),
+                    float(current_observations[self.get_sim_container().name]["Default_Position"][1]),
+                    float(current_observations[self.get_sim_container().name]["Default_Position"][2]) + 0.01
+                    ),
+            dim_x = 10,
+            dim_y = 10,
+            dim_z = 3,
+            material_color =  controller_manager.get_current_liquid_color()
+        )
+        self.add_liquid(particle_system_set_material_dict)
+        controller_manager.set_need_new_liquid(False)
+        return
+
+    def remove_liquid(self, liquid):
+        """Remove a liquid from the liquid list if it exists."""
+        if liquid in self.object['liquid']:
+            self.object['liquid'].remove(liquid)
+
+    def add_solid(self, solid):
+        """Add a solid to the solid list."""
+        self.object['solid'].append(solid)
+
+    def remove_solid(self, solid):
+        """Remove a solid from the solid list if it exists."""
+        if solid in self.object['solid']:
+            self.object['solid'].remove(solid)
