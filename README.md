@@ -51,10 +51,13 @@ omni_python organic_demo.py
 ```
 **:rocket:omni_python is Isaac_Sim's python.sh file, make sure he's added to your system variables!:rocket:**
 
+[reaction.pdf](https://github.com/user-attachments/files/15544340/reaction.pdf)
+
 # Transparency Detection Sim2real
 To download the dataset we generate in Isaac-Sim, use the link below:
 * [**Transparency Dataset**](https://www.omni-chemistry.com/#/)Click this link for dataset
 ![Dataset](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/49166b9a-662f-4063-86dd-8bc39a2f5453)
+
 
 * Chemistry3D integrates with **:rocket:segmentation_models.pytorch:rocket:** if you want to doing vision-based tasks. You can refer to the following documentation.
  [**segmentation_models.pytorch**](https://github.com/qubvel/segmentation_models.pytorch) Click this link for segmentation_models.pytorch
