@@ -1,0 +1,19 @@
+Prompt: 'observation: 'Franka: {'joint_positions': array([ 1.1999939e-02, -5.6984431e-01,  8.4399323e-09, -2.8100469e+00,
+       -3.2862039e-07,  3.0317378e+00,  7.4098605e-01,  3.1491958e-03,
+        4.0643443e-03], dtype=float32)}
+beaker_Kmno4: {'Default_Position': array([-2.757, -1.34 ,  0.1  ]), 'position': array([-2.757     , -1.34      ,  0.10000002], dtype=float32), 'Pour_Position': array([-2.71199995, -1.33900003,  0.191     ])}
+beaker_Fecl2: {'Default_Position': array([-2.652, -1.34 ,  0.1  ]), 'position': array([-2.652, -1.34 ,  0.1  ], dtype=float32), 'Return_Position': array([-2.97, -1.13,  0.1 ])}
+Bottle_Kmno4: {'Default_Position': array([-2.063, -1.34 ,  0.1  ]), 'position': array([-2.062999  , -1.3399994 ,  0.10000041], dtype=float32), 'Pour_Position': array([-2.67699997, -1.34000003,  0.22500002]), 'Return_Position': array([-2.023, -1.36 ,  0.1  ])}
+Bottle_Fecl2: {'Default_Position': array([-2.16, -1.34,  0.1 ]), 'position': array([-2.1599994 , -1.3399991 ,  0.10000063], dtype=float32), 'Pour_Position': array([-2.72999995, -1.34000003,  0.225     ])}
+I want to pick and pour the Kmno4 from its bottle to beaker,then move the bottom to default position
+####################
+Response: ```json
+{
+    "Controllers' Name": "Pick and Pour Kmno4 Task",
+    "Task Description": "The task is to pick the Kmno4 from its bottle, pour it into the beaker, and then return the bottle to its default position.",
+    "Code":"pickmove_controller = PickMoveController(name='pickmove_controller', cspace_controller=RMPFlowController(name='pickmove_cspace_controller1', robot_articulation=Franka), gripper=Franka.gripper, speed = 1.5)\n pour_controller = PourController(name='pour_controller', cspace_controller=RMPFlowController(name='pour_cspace_controller', robot_articulation=Franka), gripper=Franka.gripper, Sim_Container1 = Sim_Bottle_Kmno4, Sim_Container2 = Sim_Beaker_Kmno4)\n return_controller = ReturnController(name='return_controller', cspace_controller=RMPFlowController(name='return_cspace_controller1', robot_articulation=Franka), gripper=Franka.gripper, speed = 1.5)"
+}
+```
+
+####################
+

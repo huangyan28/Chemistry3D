@@ -1,0 +1,8 @@
+The code provided is to add the instantiated controllers to the Controller_Manager, but not to add tasks to the controller manager. Here is the correct code for adding tasks to the controller manager in the order of execution:
+
+```json
+{
+    "Task Description":"Add tasks to Controller_Manager in the order of execution with 'pickmove_controller' first, followed by 'pour_controller' and finally 'return_controller'",
+    "Code": "Sim_Bottle_Kmno4 = Sim_Container(sim_container = my_world.scene.get_object(\"Bottle_Kmno4\"),object = {'liquid': [particle_set], 'solid': []},solute={'MnO4^-': 0.01, 'K^+': 0.01}, volume=0.02)\nSim_Bottle_Hcl = Sim_Container(sim_container = my_world.scene.get_object(\"Bottle_Hcl\"),object = {'liquid': [particle_set1], 'solid': []},solute={'H^+': 0.03, 'Cl^-': 0.03}, volume=0.01)\nSim_Beaker_Kmno4 = Sim_Container(sim_container = my_world.scene.get_object(\"beaker_Kmno4\"))\nSim_Beaker_Hcl = Sim_Container(sim_container = my_world.scene.get_object(\"beaker_Hcl\"))\nSim_Beaker_Feo = Sim_Container(sim_container = my_world.scene.get_object(\"beaker_Feo\"),object = {'liquid': [], 'solid': [Feo]},solute={'FeO': 0.02})"
+}
+```

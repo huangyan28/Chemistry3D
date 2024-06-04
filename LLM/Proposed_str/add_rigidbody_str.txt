@@ -1,0 +1,6 @@
+```json
+{   
+    "Task Description":"Convert the beakers and reagent bottles into rigid bodies",
+    "Code": "rbApi1 = UsdPhysics.RigidBodyAPI.Apply(Sim_Beaker_Kmno4.get_sim_container().prim.GetPrim())\nrbApi1.CreateRigidBodyEnabledAttr(True)\nrbApi2 = UsdPhysics.RigidBodyAPI.Apply(Sim_Beaker_Fecl2.get_sim_container().prim.GetPrim())\nrbApi2.CreateRigidBodyEnabledAttr(True)\nrbApi3 = UsdPhysics.RigidBodyAPI.Apply(Sim_Bottle_Kmno4.get_sim_container().prim.GetPrim())\nrbApi3.CreateRigidBodyEnabledAttr(True)\nrbApi4 = UsdPhysics.RigidBodyAPI.Apply(Sim_Bottle_Fecl2.get_sim_container().prim.GetPrim())\nrbApi4.CreateRigidBodyEnabledAttr(True)"
+}
+```

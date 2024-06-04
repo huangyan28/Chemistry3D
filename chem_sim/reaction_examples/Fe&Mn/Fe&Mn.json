@@ -1,0 +1,42 @@
+{
+    "name": "Fe&Mn",
+    "formula": "10FeSO4+2KMnO4+8H2SO4=5Fe2(SO4)3+K2SO4+2MnSO4+8H2O",
+    "REACTANTS": [
+      "FeSO4",
+      "KMnO4",
+      "H2SO4"
+    ],
+    "PRODUCTS": [
+      "Fe2(SO4)3",
+      "K2SO4",
+      "MnSO4",
+      "H2O"
+    ],
+    "SOLVENTS": [
+      "H2O"
+    ],
+    "MATERIALS": [
+      "FeSO4",
+      "KMnO4",
+      "H2SO4",
+      "Fe2(SO4)3",
+      "K2SO4",
+      "MnSO4",
+      "H2O"
+    ],
+    "pre_exp_arr": [1],
+    "activ_energy_arr": [1.0],
+    "stoich_coeff_arr": [
+      [ 10.0, 2.0, 8.0]
+    ],
+    "conc_coeff_arr": [
+      [-10.0 ],
+      [-2.0 ],
+      [-8.0 ],
+      [ 5.0 ],
+      [ 1.0 ],
+      [ 2.0 ],
+      [ 8.0 ]
+    ]
+  }
+  

@@ -1,0 +1,6 @@
+```json
+{
+    "Task Description": "Add KMnO4 liquid to Bottle_Kmno4 and FeCl2 liquid to Bottle_Fecl2",
+    "Code": "particle_system1,particle_set1,material_shader1 = utils.create_particle_system_and_set( particle_system_path_str = \"/World/particleSystem1\", particle_set_path_str = \"/World/particles1\", scenePath = scenePath, center = Gf.Vec3f(current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][0], current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][1],  current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][2]+0.01), dim_x = 10, dim_y = 10, dim_z = 6, material_color = (1, 1, 1))\n\nparticle_system2,particle_set2,material_shader2 = utils.create_particle_system_and_set( particle_system_path_str = \"/World/particleSystem2\", particle_set_path_str = \"/World/particles2\", scenePath = scenePath, center = Gf.Vec3f(current_observations[\"Bottle_Fecl2\"][\"Default_Position\"][0], current_observations[\"Bottle_Fecl2\"][\"Default_Position\"][1],  current_observations[\"Bottle_Fecl2\"][\"Default_Position\"][2]+0.01), dim_x = 10, dim_y = 10, dim_z = 6, material_color = (1, 1, 1))"
+}
+```

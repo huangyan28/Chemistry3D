@@ -1,0 +1,6 @@
+```json
+{
+    "Task Description": "Firstly, the Franka robot arm controlled by the pickmove_controller will pick up the Bottle_Kmno4. Then, using the pour_controller, the Franka robot arm will pour the content of Bottle_Kmno4 into the beaker_Kmno4. Lastly, the return_controller will make the Franka robot arm return the Bottle_Kmno4 to its original position.",
+    "Code": "controller_manager.add_task('pickmove_controller','pick', {\n'picking_position': lambda obs: obs['Bottle_Kmno4']['position'],\n'target_position': lambda obs: obs['Bottle_Kmno4']['Pour_Position'],\n'current_joint_positions': lambda obs: Franka.get_joint_positions()\n})\ncontroller_manager.add_task('pour_controller','pour', {\n'franka_art_controller': lambda obs: Franka.get_articulation_controller(),\n'current_joint_positions': lambda obs: Franka.get_joint_positions(),\n'current_joint_velocities': lambda obs: Franka.get_joint_velocities(),\n'pour_speed': -55 / 180.0 * np.pi\n})\ncontroller_manager.add_task('return_controller','return', {\n'pour_position': lambda obs: obs['Bottle_Kmno4']['Pour_Position'],\n'return_position': lambda obs: np.array(obs['Bottle_Kmno4']['Return_Position']),\n'current_joint_positions': lambda obs: Franka.get_joint_positions()\n})"
+}
+```

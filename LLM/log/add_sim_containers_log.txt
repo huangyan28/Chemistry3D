@@ -1,0 +1,17 @@
+Prompt: observation: {'Franka': {'joint_positions': array([ 0.012     , -0.57000005,  0.        , -2.81      ,  0.        ,
+        3.037     ,  0.741     ,  0.00319795,  0.00401566], dtype=float32)}, 'beaker_Kmno4': {'Default_Position': array([-2.757, -1.34 ,  0.1  ]), 'position': array([-2.757, -1.34 ,  0.1  ], dtype=float32), 'Pour_Position': array([-2.71199995, -1.33900003,  0.191     ])}, 'beaker_Fecl2': {'Default_Position': array([-2.652, -1.34 ,  0.1  ]), 'position': array([-2.652, -1.34 ,  0.1  ], dtype=float32), 'Return_Position': array([-2.97, -1.13,  0.1 ])}, 'Bottle_Kmno4': {'Default_Position': array([-2.063, -1.34 ,  0.1  ]), 'position': array([-2.063, -1.34 ,  0.1  ], dtype=float32), 'Pour_Position': array([-2.67699997, -1.34000003,  0.225     ]), 'Return_Position': array([-2.023, -1.36 ,  0.1  ])}, 'Bottle_Fecl2': {'Default_Position': array([-2.16, -1.34,  0.1 ]), 'position': array([-2.16, -1.34,  0.1 ], dtype=float32), 'Pour_Position': array([-2.72999995, -1.34000003,  0.225     ])}}\n```json
+{
+    "Task Description": "Add KMnO4 liquid to Bottle_Kmno4 and FeCl2 liquid to Bottle_Fecl2",
+    "Code": "particle_system1,particle_set1,material_shader1 = utils.create_particle_system_and_set( particle_system_path_str = \"/World/particleSystem1\", particle_set_path_str = \"/World/particles1\", scenePath = scenePath, center = Gf.Vec3f(current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][0], current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][1],  current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][2]+0.01), dim_x = 10, dim_y = 10, dim_z = 6, material_color = (1, 1, 1))\n\nparticle_system2,particle_set2,material_shader2 = utils.create_particle_system_and_set( particle_system_path_str = \"/World/particleSystem2\", particle_set_path_str = \"/World/particles2\", scenePath = scenePath, center = Gf.Vec3f(current_observations[\"Bottle_Fecl2\"][\"Default_Position\"][0], current_observations[\"Bottle_Fecl2\"][\"Default_Position\"][1],  current_observations[\"Bottle_Fecl2\"][\"Default_Position\"][2]+0.01), dim_x = 10, dim_y = 10, dim_z = 6, material_color = (1, 1, 1))"
+}
+```
+####################
+Response: ```json
+{
+    "Task Description": "Create Sim_Container for the beakers and bottles and add the corresponding particle systems to the containers",
+    "Code": "Sim_Beaker_Kmno4 = Sim_Container(sim_container = my_world.scene.get_object(\"beaker_Kmno4\"))\nSim_Beaker_Fecl2 = Sim_Container(sim_container = my_world.scene.get_object(\"beaker_Fecl2\"))\nSim_Bottle_Kmno4 = Sim_Container( sim_container = my_world.scene.get_object(\"Bottle_Kmno4\"), object = {'liquid': [particle_set1], 'solid': []}, solute={'MnO4^-': 0.01, 'K^+': 0.01}, volume=0.02)\nSim_Bottle_Fecl2 = Sim_Container( sim_container = my_world.scene.get_object(\"Bottle_Fecl2\"), object = {'liquid': [particle_set2], 'solid': []}, solute={'Fe^2+': 0.01, 'Cl^-': 0.02}, volume=0.02)"
+}
+```
+
+####################
+

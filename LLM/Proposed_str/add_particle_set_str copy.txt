@@ -1,0 +1,8 @@
+The code provided is to add the instantiated controllers to the Controller_Manager, but not to add tasks to the controller manager. Here is the correct code for adding tasks to the controller manager in the order of execution.
+
+```json
+{
+    "Task Description":"Add tasks to Controller_Manager in the order of execution with 'pickmove_controller' first, followed by 'pour_controller' and finally 'return_controller'",
+    "Code": "particle_system,particle_set,material_shader = utils.create_particle_system_and_set(particle_system_path_str = \"/World/particleSystem1\", particle_set_path_str = \"/World/particles1\", scenePath = scenePath, center = Gf.Vec3f(current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][0], current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][1],  current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][2]+0.01), dim_x = 10, dim_y = 10, dim_z = 6, material_color = (1, 1, 1))\nparticle_system1,particle_set1,material_shader1 = utils.create_particle_system_and_set( particle_system_path_str = \"/World/particleSystem2\", particle_set_path_str = \"/World/particles2\", scenePath = scenePath, center = Gf.Vec3f(current_observations[\"Bottle_Hcl\"][\"Default_Position\"][0], current_observations[\"Bottle_Hcl\"][\"Default_Position\"][1], current_observations[\"Bottle_Kmno4\"][\"Default_Position\"][2]+0.01), dim_x = 10, dim_y = 10, dim_z = 6, material_color = (1, 1, 1) )"
+}
+```

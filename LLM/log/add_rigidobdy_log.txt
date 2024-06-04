@@ -1,0 +1,12 @@
+Prompt: Objects introduced in the scene: dict_keys(['__builtins__', 'particle_system1', 'particle_set1', 'material_shader1', 'particle_system2', 'particle_set2', 'material_shader2', 'Sim_Beaker_Kmno4', 'Sim_Beaker_Fecl2', 'Sim_Bottle_Kmno4', 'Sim_Bottle_Fecl2'])\n
+####################
+Response: ```json
+{   
+    "Task Description":"Convert the beakers and reagent bottles into rigid bodies",
+    "Code": "rbApi1 = UsdPhysics.RigidBodyAPI.Apply(Sim_Beaker_Kmno4.get_sim_container().prim.GetPrim())\nrbApi1.CreateRigidBodyEnabledAttr(True)\nrbApi2 = UsdPhysics.RigidBodyAPI.Apply(Sim_Beaker_Fecl2.get_sim_container().prim.GetPrim())\nrbApi2.CreateRigidBodyEnabledAttr(True)\nrbApi3 = UsdPhysics.RigidBodyAPI.Apply(Sim_Bottle_Kmno4.get_sim_container().prim.GetPrim())\nrbApi3.CreateRigidBodyEnabledAttr(True)\nrbApi4 = UsdPhysics.RigidBodyAPI.Apply(Sim_Bottle_Fecl2.get_sim_container().prim.GetPrim())\nrbApi4.CreateRigidBodyEnabledAttr(True)"
+}
+```
+
+
+####################
+

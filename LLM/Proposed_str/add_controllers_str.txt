@@ -1,0 +1,6 @@
+```json
+{
+    "Task Description": "The task is to pick the Kmno4 from its bottle, pour it into the beaker, and then return the bottle to its default position.",
+    "Code": "controller_manager.add_controller('pickmove_controller', pickmove_controller)\ncontroller_manager.add_controller('pour_controller', pour_controller)\ncontroller_manager.add_controller('return_controller', return_controller)"
+}
+```

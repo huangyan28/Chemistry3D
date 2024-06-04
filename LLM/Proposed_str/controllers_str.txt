@@ -1,0 +1,7 @@
+```json
+{
+    "Controllers' Name": "Pick and Pour Kmno4 Task",
+    "Task Description": "The task is to pick the Kmno4 from its bottle, pour it into the beaker, and then return the bottle to its default position.",
+    "Code":"pickmove_controller = PickMoveController(name='pickmove_controller', cspace_controller=RMPFlowController(name='pickmove_cspace_controller1', robot_articulation=Franka), gripper=Franka.gripper, speed = 1.5)\n pour_controller = PourController(name='pour_controller', cspace_controller=RMPFlowController(name='pour_cspace_controller', robot_articulation=Franka), gripper=Franka.gripper, Sim_Container1 = Sim_Bottle_Kmno4, Sim_Container2 = Sim_Beaker_Kmno4)\n return_controller = ReturnController(name='return_controller', cspace_controller=RMPFlowController(name='return_cspace_controller1', robot_articulation=Franka), gripper=Franka.gripper, speed = 1.5)"
+}
+```

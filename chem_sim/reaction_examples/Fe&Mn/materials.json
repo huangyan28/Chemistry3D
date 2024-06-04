@@ -1,0 +1,36 @@
+{
+    "FeSO4":{
+        "norm_color": [135,209,192,100],
+        "norm_enthalpy": -998.3
+    },
+
+    "KMnO4":{
+        "norm_color": [102,10,96,100],
+        "norm_enthalpy": -793.8
+    },
+
+    "H2SO4":{
+        "norm_color":[255,255,255,0],
+        "norm_enthalpy": -909.27
+    },
+
+    "Fe2(SO4)3":{
+        "norm_color":[174,119,0,100],
+        "norm_enthalpy": -2825.0
+    },
+
+    "K2SO4":{
+        "norm_color":[255,255,255,0],
+        "norm_enthalpy": -1414.02
+    },
+
+    "MnSO4":{
+        "norm_color":[216,183,185,130],
+        "norm_enthalpy": -1130.11
+    },
+
+    "H2O":{
+        "norm_color":[255,255,255,0],
+        "norm_enthalpy": -285.830
+    }
+}
