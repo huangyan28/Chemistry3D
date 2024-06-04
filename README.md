@@ -6,12 +6,30 @@ The development of this system aims to integrate chemical experiment simulation 
 
 Contact me at eis_hy@whu.edu.cn
 
-## Robotic Manipulation
-
 * **The first thing you need to do to develop and run demos for robotics operations is to make sure that Issac-Sim is already installed on your operating device.**
-* [**Issac—Sim**](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)See more details in this link、
-* [**Chemistry3D Homepage**](https://www.omni-chemistry.com/#/)See more details in this link、
-* [**Chemistry3D Document**](https://www.omni-chemistry.com/#/)See more details in this link、
+* [**Issac—Sim**](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)See more details in this link
+* [**Chemistry3D Homepage**](https://www.omni-chemistry.com/#/)See more details in this link
+* [**Chemistry3D Document**](https://www.omni-chemistry.com/#/)See more details in this link
+
+# How to Download Chemistry3D
+
+Follow the steps below to download the repository, navigate to the correct directory, and run the demo.
+
+## Step 1: Clone the Repository
+
+First, you need to clone the repository from GitHub. Open your terminal and run the following command:
+
+```bash
+git clone https://github.com/WHU-DOUBLE/Chemistry3D.git
+cd Chemistry3D
+pip install -r requirements.txt
+
+## Robotic Manipulation
+**To run the demo of chemistry experiment, follow these steps:**
+
+
+
+* 
 - Example provided in the `inorganic_example.py` under the IONIC REACTION section:
   - Initialization: Set up the simulator `ChemicalReactionSimulator`.
   - Input: Build a reactants dictionary `reactants_dict` {Name: Moles}.
