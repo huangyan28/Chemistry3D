@@ -63,3 +63,12 @@ You can also try this command to run our transparency detection demo:
 omni_python Transparent_Grasp/Isaac/train_network.py
 ```
 
+# Reinforcement Learning
+Reinforcement learning in Chemistry3D is based on OmniIsaacGymEnvs, which contains a seires of tasks. To use OmniIsaacGymEnvs, you need to download OmniIsaacGymEnvs to you Isaac-Sim. Please refer to link below.
+* [**OmniIsaacGymEnvs**](https://github.com/NVIDIA-Omniverse/OmniIsaacGymEnvs)See more details in this link
+
+# Embodied intelligence
+In the Embodied intelligence task, Chenmistry constructs several special agents that enable the addition of motion tasks and the deployment of robot motion. You can refer to this demo
+```bash
+omni_python Transparent_Grasp/Isaac/train_network.py
+```
