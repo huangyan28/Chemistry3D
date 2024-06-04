@@ -23,7 +23,21 @@ First, you need to clone the repository from GitHub. Open your terminal and run 
 
 ```bash
 git clone https://github.com/WHU-DOUBLE/Chemistry3D.git
+```
+
+## Step 2: Navigate to the Project Directory
+
+Once the repository is cloned, navigate to the project directory using the cd command:
+
+```bash
 cd Chemistry3D
+```
+
+## Step 3: Install Dependencies
+
+If the demo requires any dependencies, you need to install them first. Usually, you can find a requirements.txt file in the repository. You can install the dependencies with:
+
+```bash
 pip install -r requirements.txt
 ```
 
