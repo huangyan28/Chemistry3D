@@ -23,7 +23,7 @@ First, you need to clone the repository from GitHub. Open your terminal and run 
 git clone https://github.com/WHU-DOUBLE/Chemistry3D.git
 cd Chemistry3D
 pip install -r requirements.txt
-
+```
 ## Robotic Manipulation
 **To run the demo of chemistry experiment, follow these steps:**
 
