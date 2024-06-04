@@ -6,7 +6,7 @@ The development of this system aims to integrate chemical experiment simulation 
 
 ![1](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/06e68194-f25d-4b9a-8688-0222beef818a)
 
-Contact me at eis_hy@whu.edu.cn
+Contact us at eis_hy@whu.edu.cn, lsj20@mails.tsinghua.edu.cn, wu-t23@mails.tsinghua.edu.cn
 
 * **The first thing you need to do to develop and run demos for robotics operations is to make sure that Issac-Sim is already installed on your operating device.**
 * [**Issac—Sim**](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)See more details in this link
