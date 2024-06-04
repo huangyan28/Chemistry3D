@@ -41,5 +41,3 @@
   - `get_info()`: Get detailed information about the products
     - `get_info_organic()`: Web scraping
 
-# Chemistry3D
-
