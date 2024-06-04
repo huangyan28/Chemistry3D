@@ -1,4 +1,4 @@
-# Chemistry3D: Robotic Interaction Benchmark for Chemistry Experiments 🧪
+![reaction](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/7eff3ac3-cba6-4be9-9eaa-838cff3da742)# Chemistry3D: Robotic Interaction Benchmark for Chemistry Experiments 🧪
 ## Welcome to Chemistry3D
 Chemistry3D is an advanced chemistry simulation laboratory leveraging the capabilities of IsaacSim. This platform offers a comprehensive suite of both organic and inorganic chemical experiments, which can be conducted in a simulated environment. One of the distinguishing features of Chemistry3D is its ability to facilitate robotic operations within these experiments. The primary objective of this simulation environment is to provide a robust and reliable testing ground for both experimental procedures and the application of robotics within chemical laboratory settings.
 
@@ -51,7 +51,8 @@ omni_python organic_demo.py
 ```
 **:rocket:omni_python is Isaac_Sim's python.sh file, make sure he's added to your system variables!:rocket:**
 
-[reaction.pdf](https://github.com/user-attachments/files/15544340/reaction.pdf)
+![reaction](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/0af98d08-f19b-4de4-9d19-3688d8c1c25d)
+
 
 # Transparency Detection Sim2real
 To download the dataset we generate in Isaac-Sim, use the link below:
