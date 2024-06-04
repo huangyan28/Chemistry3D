@@ -26,10 +26,16 @@ git clone https://github.com/WHU-DOUBLE/Chemistry3D.git
 cd Chemistry3D
 pip install -r requirements.txt
 ```
-## Robotic Manipulation
+
+## Run Chemistry3D Demo
 **To run the demo of chemistry experiment, follow these steps:**
 
-
+```bash
+omni_python inorganic_demo.py
+omni_python inorganic_demo1.py
+omni_python organic_demo.py
+```
+**:rocket:omni_python is Isaac_Sim's python.sh file, make sure he's added to your system variables!:rocket:**
 
 * 
 - Example provided in the `inorganic_example.py` under the IONIC REACTION section:
