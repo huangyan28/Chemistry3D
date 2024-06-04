@@ -9,8 +9,9 @@ Contact me at eis_hy@whu.edu.cn
 ## Robotic Manipulation
 
 * **The first thing you need to do to develop and run demos for robotics operations is to make sure that Issac-Sim is already installed on your operating device.**
-* [**Issac-Sim**]See more details in (https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)
-
+* [**Issac—Sim**](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)See more details in this link、
+* [**Chemistry3D Homepage**](https://www.omni-chemistry.com/#/)See more details in this link、
+* [**Chemistry3D Document**](https://www.omni-chemistry.com/#/)See more details in this link、
 - Example provided in the `inorganic_example.py` under the IONIC REACTION section:
   - Initialization: Set up the simulator `ChemicalReactionSimulator`.
   - Input: Build a reactants dictionary `reactants_dict` {Name: Moles}.
