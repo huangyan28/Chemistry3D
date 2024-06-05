@@ -54,7 +54,7 @@ omni_python organic_demo.py
 ![reaction](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/0af98d08-f19b-4de4-9d19-3688d8c1c25d)
 
 
-# Transparency Detection Sim2real
+# Transparent Object Detection Sim2Real
 To download the dataset we generate in Isaac-Sim, use the link below:
 * [**Transparency Dataset**](https://www.omni-chemistry.com/#/)Click this link for dataset
 ![Dataset](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/49166b9a-662f-4063-86dd-8bc39a2f5453)
