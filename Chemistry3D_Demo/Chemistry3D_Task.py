@@ -47,8 +47,8 @@ class Chem_Lab_Task(BaseTask):
         
         #object place setting
 
-        Lab_path = os.path.join(current_directory,'lab.usd')
-        Beaker_path = os.path.join(current_directory,'Assets/250_ml_beaker.usd')
+        Lab_path = os.path.join(current_directory,'Controller_test.usd')
+        Beaker_path = os.path.join(current_directory,'Assets/beaker.usd')
         Bottle_Hcl_path = Bottle_Kmno4_path = os.path.join(current_directory,'Assets/bottle_large1/bottle_large1.usd')
         # This will create a new XFormPrim and point it to the usd file as a reference
         # Similar to how pointers work in memory
@@ -61,6 +61,7 @@ class Chem_Lab_Task(BaseTask):
         self._franka = scene.add(Franka(
                 prim_path="/World/Lab/franka0",
                 name=f"Franka0",
+                # usd_path = '/home/huangyan/isaac_sim-assets-1-2023.1.1/Assets/Isaac/2023.1.1/Isaac/Robots/Franka/franka.usd',
                 )
             )
         self._camera = scene.add(Camera(

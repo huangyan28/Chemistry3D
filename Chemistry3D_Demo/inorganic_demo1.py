@@ -43,21 +43,6 @@ current_observations = my_world.get_observations()
 controller_manager = ControllerManager(my_world, Franka0, Franka0.gripper)
 
 # Initialize simulation containers with specific properties
-Sim_Bottle1 = Sim_Container(
-    world=my_world,
-    sim_container=my_world.scene.get_object("Bottle1"),
-    solute={'c1ccc2cc3ccccc3cc2c1': 10},
-    org=True,
-    volume=10
-)
-Sim_Bottle2 = Sim_Container(
-    world=my_world,
-    sim_container=my_world.scene.get_object("Bottle2"),
-    solute={'BrBr': 20},
-    org=True,
-    volume=10
-)
-
 
 Sim_Bottle1 = Sim_Container(world = my_world, sim_container = my_world.scene.get_object("Bottle1"), solute={'H^+': 30, 'Cl^-': 30}, volume=10)
 Sim_Beaker1 = Sim_Container(world = my_world,sim_container = my_world.scene.get_object("Beaker1"))
@@ -65,9 +50,6 @@ Sim_Beaker2 = Sim_Container(world = my_world,sim_container = my_world.scene.get_
 
 Sim_Beaker1.sim_update(Sim_Bottle1,Franka0,controller_manager)
 Sim_Beaker2.sim_update(Sim_Beaker1,Franka0,controller_manager)
-
-count = 1
-root_path = 'Inrganic_demo'
 
 # Main simulation loop
 while simulation_app.is_running():
@@ -87,13 +69,6 @@ while simulation_app.is_running():
             save_rgb(img, file_name)
         count += 1
         if controller_manager.is_done():
-            # Generate a video from the saved images
-            image_files = [os.path.join(root_path, f) for f in os.listdir(root_path) if f.endswith(('.png', '.jpg', '.jpeg'))]
-            image_files.sort(key=natural_sort_key)
-            clip = ImageSequenceClip(image_files, fps=60)
-            clip.write_videofile(os.path.join(root_path, "output_video.mp4"), codec="libx264")
-            for image_file in tqdm(image_files):
-                os.remove(image_file)
             my_world.pause()
             break
 

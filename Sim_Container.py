@@ -32,6 +32,7 @@ class Sim_Container(Container):
         
         if solute is not None and volume != 's':
             utils._set_particle_parameter(self.world, particleContactOffset=0.003)
+            print(f"/World/particleSystem{self.sim_container.name}")
             particle_system_set_material_dict = utils.create_particle_system_and_set(
                 self.world,
                 particle_system_path_str=f"/World/particleSystem{self.sim_container.name}",

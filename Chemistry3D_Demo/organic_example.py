@@ -35,6 +35,7 @@ utils._set_particle_parameter(my_world, particleContactOffset=0.003)
 # Add the chemical lab task to the simulation world
 my_world.add_task(Chem_Lab_Task(name='Chem_Lab_Task'))
 my_world.reset()
+my_world._physics_context.enable_gpu_dynamics(flag=True)
 
 # Retrieve objects from the scene
 Franka0 = my_world.scene.get_object("Franka0")
@@ -68,6 +69,8 @@ Sim_Beaker2.sim_update(Sim_Beaker1, Franka0, controller_manager)
 count = 1
 root_path = 'Organic_demo'
 
+my_world._physics_context.enable_gpu_dynamics(flag=True)
+
 # Main simulation loop
 while simulation_app.is_running():
     my_world.step(render=True)
@@ -80,19 +83,7 @@ while simulation_app.is_running():
         controller_manager.process_concentration_iters()
         if controller_manager.need_new_liquid():
             controller_manager.get_current_controller()._get_sim_container2().create_liquid(controller_manager, current_observations)
-        if count % 10 == 0:
-            img = mycamera.get_rgba()
-            file_name = os.path.join(root_path, f"{count}")
-            save_rgb(img, file_name)
-        count += 1
         if controller_manager.is_done():
-            # Generate a video from the saved images
-            image_files = [os.path.join(root_path, f) for f in os.listdir(root_path) if f.endswith(('.png', '.jpg', '.jpeg'))]
-            image_files.sort(key=natural_sort_key)
-            clip = ImageSequenceClip(image_files, fps=60)
-            clip.write_videofile(os.path.join(root_path, "output_video.mp4"), codec="libx264")
-            for image_file in tqdm(image_files):
-                os.remove(image_file)
             my_world.pause()
             break
 
