@@ -10,7 +10,6 @@ Contact us at eis_hy@whu.edu.cn, lsj20@mails.tsinghua.edu.cn, wu-t23@mails.tsing
 
 * **The first thing you need to do to develop and run demos for robotics operations is to make sure that Issac-Sim is already installed on your operating device.**
 * [**Issac—Sim**](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)See more details in this link
-* [**Chemistry3D Homepage**](https://www.omni-chemistry.com/#/)See more details in this link
 * [**Chemistry3D Document**](https://www.omni-chemistry.com/#/)See more details in this link
 
 # How to Download Chemistry3D
