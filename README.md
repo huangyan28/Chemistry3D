@@ -41,6 +41,8 @@ pip install -r requirements.txt
 ```
 
 # Run Chemistry3D Demo
+ [**Chemical Assets**](https://drive.google.com/drive/folders/1QKzjud_TLErJ7wQv0qjaXnjPH4OOz3tM?usp=drive_link) 
+
 **To run the demo of chemistry experiment, follow these steps:**
 
 ```bash
@@ -55,7 +57,7 @@ omni_python organic_demo.py
 
 # Transparent Object Detection Sim2Real
 To download the dataset we generate in Isaac-Sim, use the link below:
-* [**Transparency Dataset**](https://www.omni-chemistry.com/#/)Click this link for dataset
+* [**Transparency Dataset**](https://drive.google.com/drive/folders/1hzBU4WHo5zqb-rXHebUHP_Jw1TuznNsE?usp=drive_link) Click this link for dataset
 ![Dataset](https://github.com/WHU-DOUBLE/Chemistry3D/assets/106065071/49166b9a-662f-4063-86dd-8bc39a2f5453)
 
 
