@@ -503,7 +503,7 @@ class OrganicReactionSimulator:
     """
 
     def __init__(self, tem=None):
-        api_key = 'apk-22af09d4f8e936a1ec0800bc7abef107622a00c4933a257cb43ad56aaf667f4d5b892bdcb28be2c848e1fcb1cea4b459d46c059138f933224beef6d7f978bc70e8da3d2b1fb2aa02cee8945a461e21ae'
+        api_key = ... # use your own api from rxn4chemistry
         print('Initializing...')
         self.rxn4chemistry_wrapper = RXN4ChemistryWrapper(api_key=api_key)
         self.rxn4chemistry_wrapper.create_project('organic')
