@@ -3,6 +3,8 @@
 >
 > Visit our website: [Chemistry3D](https://sites.google.com/view/chemistry3d)
 >
+> Visit our document: [Chemistry3D Document](https://www.omni-chemistry.com/#/)
+> 
 > Read our paper: [arXiv:2406.08160](https://arxiv.org/abs/2406.08160)
 
 Chemistry3D is an advanced chemistry simulation laboratory leveraging the capabilities of IsaacSim. This platform offers a comprehensive suite of both organic and inorganic chemical experiments, which can be conducted in a simulated environment. One of the distinguishing features of Chemistry3D is its ability to facilitate robotic operations within these experiments. The primary objective of this simulation environment is to provide a robust and reliable testing ground for both experimental procedures and the application of robotics within chemical laboratory settings.
@@ -18,8 +20,7 @@ Contact us at eis_hy@whu.edu.cn, lsj20@mails.tsinghua.edu.cn, wu-t23@mails.tsing
 
 * **The first thing you need to do to develop and run demos for robotics operations is to make sure that Issac-Sim is already installed on your operating device.**
 * [**Issac—Sim**](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)See more details in this link
-* [**Chemistry3D Document**](https://www.omni-chemistry.com/#/)See more details in this link
-
+  
 # How to Download Chemistry3D
 
 Follow the steps below to download the repository, navigate to the correct directory, and run the demo.
