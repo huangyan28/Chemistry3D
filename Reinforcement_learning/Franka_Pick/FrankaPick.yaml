@@ -18,7 +18,7 @@ env:
   startPositionNoise: 0.0
   startRotationNoise: 0.0
 
-  numProps: 1 #记得修改个数，第一步是pickandplace
+  numProps: 1 
   aggregateMode: 3
 
   actionScale: 7.5
