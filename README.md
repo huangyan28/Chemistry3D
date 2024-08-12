@@ -80,6 +80,9 @@ omni_python Transparent_Grasp/Isaac/train_network.py
 # Reinforcement Learning
 Reinforcement learning in Chemistry3D is based on OmniIsaacGymEnvs, which contains a seires of tasks. To use OmniIsaacGymEnvs, you need to download OmniIsaacGymEnvs to you Isaac-Sim. Please refer to link below.
 * [**OmniIsaacGymEnvs**](https://github.com/NVIDIA-Omniverse/OmniIsaacGymEnvs)See more details in this link
+**PLEASE NOTE:** Version 4.0.0 will be the last release of OmniIsaacGymEnvs. Moving forward, OmniIsaacGymEnvs will be merging with [IsaacLab](https://github.com/isaac-sim/IsaacLab). All future updates will be available as part of the IsaacLab repository.
+
+For tutorials on migrating to IsaacLab, please visit: [IsaacLab Migration Guide](https://isaac-sim.github.io/IsaacLab/source/migration/migrating_from_omniisaacgymenvs.html).
 
 # Embodied intelligence
 In the Embodied intelligence task, Chenmistry constructs several special agents that enable the addition of motion tasks and the deployment of robot motion. You can refer to this demo
