@@ -3,6 +3,9 @@ import copy
 
 # Inorganic
 # Initialization of Reagent Bottles: Ion Quantity & Volume
+# The ‘solute’ parameter is a dictionary that contains the solute's name and amount.
+# The ‘volume’ parameter specifies the total volume of the solution.
+
 a1 = Container(solute={'MnO4^-': 1, 'K^+': 1}, volume=4)
 a2 = Container(solute={'H^+': 3, 'Cl^-': 3}, volume=1)
 a3 = Container(solute={'FeO': 2}, volume='s')
