@@ -1,6 +1,10 @@
 from simulation.simulator import Container
 
 # Initialization of Reagent Bottles
+# The ‘solute’ parameter is a dictionary that contains the solute's name and amount.
+# The ‘volume’ parameter specifies the total volume of the solution.
+# The ‘org’ parameter distinguishes between organic and inorganic reactions.
+
 a1 = Container({'BrBr': 20}, org=True, volume=10)
 a2 = Container({'c1ccc2cc3ccccc3cc2c1': 10}, org=True, volume=10)
 
